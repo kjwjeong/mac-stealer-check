@@ -144,7 +144,7 @@ check_processes() {
   hits=$(printf '%s\n' "$snap" | grep -E "$PROC_RE")
   while read -r pid ppid cmd; do
     [ -z "${pid:-}" ] && continue
-    [ "$pid" = "$$" ] || [ "$ppid" = "$$" ] && continue
+    if [ "$pid" = "$$" ] || [ "$ppid" = "$$" ]; then continue; fi
     matches "$cmd" "$PROC_RE" || continue
     warn "PID $pid (parent $ppid) has a suspicious command line: $(short "$cmd")"
     n=$((n + 1))
