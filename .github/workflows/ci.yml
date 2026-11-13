@@ -1,0 +1,17 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install shellcheck
+      - run: shellcheck mac-stealer-check.sh tests/run.sh
+      - name: Detection tests
+        run: tests/run.sh
+      - name: Full run on a clean runner (exit 0 or 1 is fine, 2 is a crash)
+        run: |
+          set +e
+          ./mac-stealer-check.sh --quick --no-color
+          [ $? -le 1 ]
