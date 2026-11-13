@@ -18,7 +18,7 @@ A small, **read-only** script that checks your Mac for signs of infostealer malw
 ## Run it
 
 ```bash
-git clone https://github.com/YOUR-USER/mac-stealer-check.git
+git clone https://github.com/kjwjeong/mac-stealer-check.git
 cd mac-stealer-check
 less mac-stealer-check.sh     # read it first
 ./mac-stealer-check.sh
