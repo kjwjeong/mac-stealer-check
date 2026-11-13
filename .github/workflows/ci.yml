@@ -5,7 +5,7 @@ jobs:
   test:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: brew install shellcheck
       - run: shellcheck --severity=warning mac-stealer-check.sh tests/run.sh
       - name: Detection tests
