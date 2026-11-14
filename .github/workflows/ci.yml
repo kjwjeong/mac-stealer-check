@@ -13,5 +13,7 @@ jobs:
       - name: Full run on a clean runner (exit 0 or 1 is fine, 2 is a crash)
         run: |
           set +e
-          ./mac-stealer-check.sh --quick --no-color
-          [ $? -le 1 ]
+          ./mac-stealer-check.sh --quick --no-color --html /tmp/ci-report.html --no-open
+          code=$?
+          test -s /tmp/ci-report.html
+          [ "$code" -le 1 ]

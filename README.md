@@ -5,7 +5,8 @@ A small, **read-only** script that checks your Mac for signs of infostealer malw
 - **One file, no dependencies.** It uses only tools that ship with macOS.
 - **Read-only.** It never changes, deletes, quarantines or uploads anything. It only prints a report.
 - **No sudo.** It checks your own user account.
-- **Readable.** It is about 470 lines of commented Bash. Please read it before you run it (see below).
+- **Readable.** It is a single commented Bash script. Please read it before you run it (see below).
+- **Clean HTML report (`--html`).** Generates a self-contained, offline report you can view in your browser or save as PDF.
 
 ```
 == Shell history (ClickFix / pasted commands) ==
@@ -21,8 +22,10 @@ A small, **read-only** script that checks your Mac for signs of infostealer malw
 git clone https://github.com/kjwjeong/mac-stealer-check.git
 cd mac-stealer-check
 less mac-stealer-check.sh     # read it first
-./mac-stealer-check.sh
+./mac-stealer-check.sh --html # run checks and open a formatted report in your browser
 ```
+
+Or run `./mac-stealer-check.sh` for terminal-only output.
 
 > **Don't** run this (or anything else) with `curl … | bash`. That habit is exactly how these stealers get in.
 
@@ -30,6 +33,8 @@ Options:
 
 | Flag | Meaning |
 |---|---|
+| `--html [FILE]` | Write a formatted HTML report (defaults to a temp file) and open it in your browser |
+| `--no-open` | With `--html`, save the report without opening the browser |
 | `--quick` | Skip the unified-log query, which is the slowest check |
 | `--days N` | Look-back window for temp files and downloads (default 30) |
 | `--log-hours N` | Look-back window for the system log (default 24) |
